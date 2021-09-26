@@ -1,0 +1,17 @@
+name = "simple-links-db"
+type = "javascript"
+zone_id = ""
+account_id = ""
+route = ""
+workers_dev = true
+compatibility_date = "2021-09-21"
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "service-worker"
+
+[[kv_namespaces]]
+binding = "LINKSDB"
+preview_id = "b9225c64b23b4212b209fb390f8a029f"
+id = "5ac741a6c41b485da87af72e5d7adc34"
