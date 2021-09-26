@@ -13,7 +13,7 @@ This projet make extensive use of the Cloudflare platform:
 
 - Workers: API routes and redirect link
 - KV: Storing information on all links
-- Pages: frontend deployment
+- Pages: frontend deployment, use deploy hook to update the public links list when a change is detected
 - Macrometa (Cloudflare partner): view tracking database, using Workers `waitUntil` function to not block the user redirection
 
 ## Demo

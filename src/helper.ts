@@ -19,6 +19,18 @@ export async function hasBody(request: IttyRequest): Promise<void | Response> {
   }
 }
 
+export async function requestStaticUpdate(): Promise<void> {
+  if (!PAGES_DEPLOY_HOOK) {
+    return
+  }
+
+  await fetch(PAGES_DEPLOY_HOOK, {
+    method: 'POST'
+  })
+
+  return
+}
+
 export const cors = {
   'Access-Control-Allow-Origin': FRONTEND_CORS ?? '*'
 }

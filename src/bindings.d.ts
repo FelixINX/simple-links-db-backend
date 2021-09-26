@@ -15,6 +15,7 @@ declare global {
   const AUTH_USER: string
   const AUTH_PASS: string
   const FRONTEND_CORS: string
+  const PAGES_DEPLOY_HOOK: string
   const LINKSDB: KVNamespace
 }
 

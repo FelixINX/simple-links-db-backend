@@ -5,7 +5,7 @@ import { Request as IttyRequest, Router } from 'itty-router'
 const router = Router()
 
 import { getCountByLink, getStatsByLink, saveView } from './macrometa'
-import { cors, generateSlug, hasBody } from './helper'
+import { cors, generateSlug, hasBody, requestStaticUpdate } from './helper'
 import { checkAuth } from './auth'
 import { Link } from './bindings'
 
@@ -112,6 +112,8 @@ router.post('/api/links/', hasBody, checkAuth, async (request: IttyRequest) => {
   }
 
   await LINKSDB.put(link.slug, link.destination, { metadata: link })
+  
+  await requestStaticUpdate()
 
   return new Response(JSON.stringify(link), {
     headers: cors,
@@ -124,6 +126,8 @@ router.delete('/api/links/:slug', checkAuth, async (request: IttyRequest) => {
   }
 
   await LINKSDB.delete(request.params.slug)
+
+  await requestStaticUpdate()
 
   return new Response(null, { headers: cors })
 })
@@ -159,6 +163,8 @@ router.put('/api/links/:slug', checkAuth, async (request: IttyRequest) => {
   await LINKSDB.put(request.params.slug, json.destination, {
     metadata: newLink,
   })
+
+  await requestStaticUpdate()
 
   return new Response(JSON.stringify(newLink), {
     headers: cors,
